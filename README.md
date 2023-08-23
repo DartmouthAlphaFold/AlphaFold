@@ -13,6 +13,7 @@ To install [AlphaFold2](https://github.com/deepmind/alphafold) on Dartmouth HPC,
     `singularity build <image_name>.sif docker://<account_name>/<program_name>:<version>`
         
     To get the latest release, set `<version>` to `latest`. For instance, 
+    
     ```singularity build alphafold_232.sif docker://catgumag/alphafold:2.3.2```
     
 - The `.sif` file our lab are using corresponds with **AlphaFold 2.3.2**. To view the full documentation for this version of AlphaFold, run 
