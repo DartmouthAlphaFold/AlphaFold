@@ -23,7 +23,13 @@ To install [AlphaFold2](https://github.com/deepmind/alphafold) on Dartmouth HPC,
     ```
     
 - You can find and build other versions of AlphaFold available on this [DockerHub](https://hub.docker.com/r/catgumag/alphafold).
-        
+
+#### *Python scripts*
+    
+- You need two scripts: `run_alphafold_singularity_gpu.py` and `visualize_alphafold_results.py`. The former runs AlphaFold, the later visualizes results. Both of them are available [here](https://github.com/DartmouthAlphaFold/AlphaFold).
+
+- Copy these files to your personal/lab folder and modify them as desired.
+
 #### *Databases*
     
 - The databases is available in `/dartfs/rc/nosnapshots/A/Appdata/AlphaFoldDB`
@@ -128,12 +134,6 @@ To install [AlphaFold2](https://github.com/deepmind/alphafold) on Dartmouth HPC,
         
     - Follow the desription in [AlphaFold Github](https://github.com/deepmind/alphafold). The [BFD](https://bfd.mmseqs.com/) database only has one version, and it is available in `/AlphaFoldDB`, so you don't need to update it. Downloading all other databases consumes around 800 GB. Make sure you have enough storage to host it.
     
-#### *Python scripts*
-    
-- You need two scripts: `run_alphafold_singularity_gpu.py` and `visualize_alphafold_results.py`. The former runs AlphaFold, the later visualizes results. Both of them are available [here](https://github.com/DartmouthAlphaFold/AlphaFold).
-
-- Copy these files to your personal/lab folder and modify them as desired.
-
 ***
 
 ### **Set up**
@@ -259,7 +259,7 @@ Polaris does not have GPU, so AlphaFold will use only CPUs.
         --output_dir /dartfs/rc/lab/H/HowellA/alphafold-output/2023-03-28_CasX2
     ```
 
-Remember to set both `use_gpu` and `use_gpu_relax` to False, since Polaris does not have GPU.
+    Remember to set both `use_gpu` and `use_gpu_relax` to False, since Polaris does not have GPU.
 
 - Detach from the `screen` using `Ctrl`+`A`, then press `D`. To go back to the `screen` where AlphaFold is running, type `screen -r <screen_id>/<screen_name>`. If you don't remember the screen ID, type `screen -ls` to list all running screens.
 
