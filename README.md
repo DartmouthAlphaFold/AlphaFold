@@ -1,13 +1,10 @@
-Duc Nguyen - Colby College '24
-Updated on 2023-08-23
+Updated on 2023-08-23 by Duc Nguyen - Colby College '24
 
 # AlphaFold2 on Dartmouth HPC cluster
 
 ### **Overview**
     
-:::info
 To install [AlphaFold2](https://github.com/deepmind/alphafold) on Dartmouth HPC, you needs a Singularity image of the program, all necessary databases, and the Python script that compiles the command line.
-:::
 
 #### *Image file*
     
@@ -49,11 +46,9 @@ To install [AlphaFold2](https://github.com/deepmind/alphafold) on Dartmouth HPC,
     
     #### **Hotfix for AlphaFold-Multimer parameters**
     
-    :::info
     The current parameters correspond with AlphaFold 2.2, <br> which is incompatible to AlphaFold 2.3. Therefore, we cannot run AlphaFold-Multimer using the existing shared resources. Right now we are asking for an update of these databases and parameters.
     
     If you want to run AlphaFold with the most recent parameters while waiting for the official update, follow the guide below.
-    :::
     
     -  First, move to your folder of design and download the newest AlphaFold parameters.
         ```
@@ -103,9 +98,7 @@ To install [AlphaFold2](https://github.com/deepmind/alphafold) on Dartmouth HPC,
     
     #### **Use custom databases**
     
-    :::info
     In case you want to download more recent version of aforementioned databases, please use scripts available at `/script` in the official [AlphaFold Github](https://github.com/deepmind/alphafold).
-    :::
     
     - Before running these scripts, you need to install [`aria2c`](https://github.com/aria2/aria2), an ultra fast tool for downloading large files, into your personal directory.
     
@@ -146,9 +139,7 @@ To install [AlphaFold2](https://github.com/deepmind/alphafold) on Dartmouth HPC,
     
 #### *`conda` environment*
     
-:::info
 In fact, you can run AlphaFold2 without building a `conda` environment. However, the later visualization of AlphaFold requires `JAX` library, which is not available in the universal `python3` library on Discovery & Polaris. Hence, personal build of Python environment is recommended. Besides, you are able to maintain the same set of Python libraries for consistency when you run a program multiple times.
-:::
     
 - Enable the `conda` command
     
@@ -219,9 +210,7 @@ In fact, you can run AlphaFold2 without building a `conda` environment. However,
 
     + `--singularity_image_path`: Path to the AlphaFold Singularity image.
 
-    :::warning
     Arguments below don't need to be modified most of time.
-    :::
 
     + `--db_preset`: Choose preset MSA database configuration - smaller genetic database (`reduced_dbs`) or full genetic database (`full_dbs`). `full_dbs` is set by default because we don't have the small BFD database on Dartmouth HPC to run `reduce_dbs`.
 
@@ -242,9 +231,7 @@ In fact, you can run AlphaFold2 without building a `conda` environment. However,
 
 ### **AlphaFold on Polaris**
 
-:::info
 Polaris does not have GPU, so AlphaFold will use only CPUs.
-:::
 
 - Create a `screen` session to run AlphaFold in background. Give it a name for easier tracking. If you want multiple simultaneous runs, create multiple screens.
 
@@ -296,11 +283,9 @@ Remember to set both `use_gpu` and `use_gpu_relax` to False, since Polaris does 
 
 ### **AlphaFold on Discovery**
 
-:::info
 GPU-based relaxation is unstable. It looks like some part of Amber on GPU runs in the background and does not do anything if the path is not correctly defined. If the predicted structure has no clashes (aka distracting stereochemical violations), it will finish in seconds. However, if clashes exist, it will run forever.
 
 Therefore, we suggest running relaxation with CPU only (`--use_gpu_relax=False`). The current default setting is to relax only the best model.
-:::
 
 - Prepare the Python scripts `run_alphafold_singularity_gpu.py` and `visualize_alphafold_results.py` in your folder.
 
@@ -412,12 +397,9 @@ Therefore, we suggest running relaxation with CPU only (`--use_gpu_relax=False`)
     # echo quit | nvidia-cuda-mps-control
     ```
 
-:::success
 For *Howell lab's members*, all Python scripts and Slurm script are ready in the lab folder. Most of arguments are preset in the `run_alphafold_singularity_gpu.sh` file. 
 
 Typically, you only need to modify `--job-name`, `--mail-user`, `OUTPUT_DIR`, and the input file(s) `--fasta_paths`; save the script; then run `sbatch run_alphafold_singularity_gpu.sh`.
-:::
-
 
 - Resource estimate:
 
@@ -443,9 +425,7 @@ Typically, you only need to modify `--job-name`, `--mail-user`, `OUTPUT_DIR`, an
 
 - Save the above Slurm script, then submit it with `sbatch` command (it is recommended to do so within your lab folder) and wait. To check the current status of the submitted job, use `squeue` command.
 
-:::info
 An earlier non-docker non-singularity AlphaFold instance is installed by Dartmouth IT in `/optnfs/el7/alphafold/alphafold`. It has its own database in `/optnfs/el7/alphafold/AlphaFoldDB`. A `conda` evironment named `alphafold` is also created in `/optnfs/el7/alphafold/conda/envs/alphafold`.  However, we are not sure how to use since it hasn't been built into a module.
-:::
 
 ***
 
@@ -519,7 +499,6 @@ This [website](https://elearning.bits.vib.be/courses/alphafold/) explains the pi
 
 Check out videos on [USCF ChimeraX](https://www.youtube.com/@ucsfchimerax8387) Youtube channel and guides on [AlphaFoldDB](https://alphafold.ebi.ac.uk/entry/Q8W3K0). The video [below](https://www.youtube.com/watch?v=oxblwn0_PMM) is especially helpful for interpretation of PAE plots.
 
-{%youtube oxblwn0_PMM %}
     
 #### Question
 
